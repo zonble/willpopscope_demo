@@ -88,6 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                   leading: TileLeading(text: '2'),
                   title: Text('控制自訂的 Navigator')),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 10, bottom: 10),
+                child: Text('如果在你的 App 當中，想在某個位置當中放一個常駐的 UI 元件，' +
+                    '像是在這個畫面中，下方常駐了一個 Bottom Bar，那麼，你就有可能需要自訂的 Navigator。\n\n' +
+                    '而當你有自訂的 Navigator 的時候，就要為這個 Navigator 設置 WillPopScope，這樣才能夠讓 Back 按鈕處理這個 Navigator 的行為，不然就會直接退出。'),
+              ),
               ListTile(
                 onTap: () => Navigator.of(context).pushNamed('demo3'),
                 title: Text('前往「控制自訂的 Navigator」範例', textAlign: TextAlign.end),
