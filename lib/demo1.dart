@@ -7,7 +7,7 @@ class Demo1 extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text('Deme 1')),
         body: WillPopScope(
-            onWillPop: () async => showDialog(
+            onWillPop: () async => await showDialog(
                 context: context,
                 builder: (context) =>
                     AlertDialog(title: Text('你確定要退出嗎？'), actions: <Widget>[

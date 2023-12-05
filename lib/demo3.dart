@@ -13,8 +13,8 @@ class _Demo3State extends State<Demo3> {
   Widget build(BuildContext context) => Scaffold(
       body: WillPopScope(
           onWillPop: () async {
-            if (_key.currentState.canPop()) {
-              _key.currentState.pop();
+            if (_key.currentState?.canPop() == true) {
+              _key.currentState?.pop();
               return false;
             }
             return true;
@@ -43,7 +43,7 @@ class _Demo3State extends State<Demo3> {
 class _Demo3Inner extends StatefulWidget {
   final int depth;
 
-  _Demo3Inner({Key key, this.depth}) : super(key: key);
+  _Demo3Inner({Key? key, required this.depth}) : super(key: key);
 
   @override
   _Demo3InnerState createState() => _Demo3InnerState();

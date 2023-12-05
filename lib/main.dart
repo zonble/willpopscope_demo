@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => showDialog(
+      onWillPop: () async => await showDialog(
           context: context,
           builder: (context) => AlertDialog(
                 title: Text('你確定要退出嗎？'),
@@ -142,8 +142,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class TileLeading extends StatelessWidget {
   const TileLeading({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
   final String text;

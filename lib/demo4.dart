@@ -20,8 +20,8 @@ class _Demo4State extends State<Demo4> {
     return WillPopScope(
       onWillPop: () async {
         var key = _tabKeys[_controller.index];
-        if (key.currentState.canPop()) {
-          key.currentState.pop();
+        if (key.currentState?.canPop() == true) {
+          key.currentState?.pop();
           return false;
         }
         return true;
@@ -51,7 +51,11 @@ class Demo4Inner extends StatefulWidget {
   final int index;
   final int depth;
 
-  Demo4Inner({Key key, this.index, this.depth}) : super(key: key);
+  Demo4Inner({
+    Key? key,
+    required this.index,
+    required this.depth,
+  }) : super(key: key);
 
   @override
   _Demo4InnerState createState() => _Demo4InnerState();
