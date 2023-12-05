@@ -27,7 +27,7 @@ class _Demo3State extends State<Demo3> {
                       initialRoute: '',
                       onGenerateRoute: (settings) => CupertinoPageRoute(
                           builder: (context) => _Demo3Inner(depth: 0),
-                          settings: RouteSettings(isInitialRoute: true)))),
+                          settings: RouteSettings()))),
               Container(
                   height: 44 + MediaQuery.of(context).padding.bottom,
                   width: double.infinity,
@@ -55,8 +55,8 @@ class _Demo3InnerState extends State<_Demo3Inner> {
       appBar: AppBar(
         title: Text('畫面深度 ${widget.depth}'),
         actions: <Widget>[
-          FlatButton(
-              textColor: Colors.white,
+          TextButton(
+              // textColor: Colors.white,
               child: Text('關閉'),
               onPressed: () => Navigator.of(context, rootNavigator: true).pop())
         ],
@@ -71,7 +71,7 @@ class _Demo3InnerState extends State<_Demo3Inner> {
                   '而當你有自訂的 Navigator 的時候，就要為這個 Navigator 設置 WillPopScope，這樣才能夠讓 Back 按鈕處理這個 Navigator 的行為，不然就會直接退出。')),
           Padding(
               padding: const EdgeInsets.all(16.0),
-              child: RaisedButton(
+              child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(CupertinoPageRoute(
                         builder: (context) =>

@@ -39,7 +39,7 @@ class _Demo4State extends State<Demo4> {
             items: List.generate(
                 kTabCount,
                 (index) => BottomNavigationBarItem(
-                    icon: Icon(Icons.info), title: Text('分頁 $index'))),
+                    icon: Icon(Icons.info), label: '分頁 $index')),
           ),
         ),
       ),
@@ -63,7 +63,7 @@ class _Demo4InnerState extends State<Demo4Inner> {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text('分頁 ${widget.index} 深度 ${widget.depth}'),
-        trailing: FlatButton(
+        trailing: TextButton(
           child: Text('關閉'),
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
@@ -85,7 +85,7 @@ class _Demo4InnerState extends State<Demo4Inner> {
                               '如果我們希望 Android 的 Back 按鈕按下去之後，是讓 Tab 裡頭的 Navigator 回到上一頁，而不是整個退出 CupertinoTabScaffold，那麼我們就需要多放一個 WillPopScope。')),
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('開啟下一頁'),
                 onPressed: () {
                   Navigator.of(context).push(CupertinoPageRoute(

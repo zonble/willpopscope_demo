@@ -11,10 +11,10 @@ class Demo1 extends StatelessWidget {
                 context: context,
                 builder: (context) =>
                     AlertDialog(title: Text('你確定要退出嗎？'), actions: <Widget>[
-                      RaisedButton(
+                      ElevatedButton(
                           child: Text('退出'),
                           onPressed: () => Navigator.of(context).pop(true)),
-                      RaisedButton(
+                      ElevatedButton(
                           child: Text('取消'),
                           onPressed: () => Navigator.of(context).pop(false)),
                     ])),

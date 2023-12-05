@@ -22,8 +22,10 @@ class _SnackBarPageState extends State<SnackBarPage> {
         if (_snackBarPresenting) return true;
         _snackBarPresenting = true;
         var snackBar = SnackBar(content: Text('再按一次 Back 按鈕退出'));
-        Scaffold.of(context).showSnackBar(snackBar)
-          ..closed.then((_) => _snackBarPresenting = false);
+        ScaffoldMessenger.of(context)
+          ..showSnackBar(snackBar)
+              .closed
+              .then((_) => _snackBarPresenting = false);
         return false;
       },
       child: Center(
