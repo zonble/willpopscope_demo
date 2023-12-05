@@ -26,14 +26,7 @@ jobs:
         run: flutter packages get
       - name: Build Web
         run: flutter build web
-      - name: Deploy
-        run: |
-          cd build/web
-          git init
-          git config user.name  "CI"
-          git config user.email "flutter-ci@github.com"
-          git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/zonble/willpopscope_demo.git
-          git checkout -b gh-pages
-          git add .
-          git commit -m "Updated docs"
-          git push --force secure-origin gh-pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/web #
