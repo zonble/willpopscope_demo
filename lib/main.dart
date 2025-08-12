@@ -33,20 +33,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => await showDialog(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        
+        final shouldPop = await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text('你確定要退出嗎？'),
-                actions: <Widget>[
-                  ElevatedButton(
-                      child: Text('退出'),
-                      onPressed: () => Navigator.of(context).pop(true)),
-                  ElevatedButton(
-                      child: Text('取消'),
-                      onPressed: () => Navigator.of(context).pop(false)),
-                ],
-              )),
+            title: Text('你確定要退出嗎？'),
+            actions: <Widget>[
+              ElevatedButton(
+                  child: Text('退出'),
+                  onPressed: () => Navigator.of(context).pop(true)),
+              ElevatedButton(
+                  child: Text('取消'),
+                  onPressed: () => Navigator.of(context).pop(false)),
+            ],
+          ),
+        );
+        
+        if (shouldPop == true) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(title: Text(widget.title)),
         body: SafeArea(
