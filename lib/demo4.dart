@@ -17,14 +17,17 @@ class _Demo4State extends State<Demo4> {
   @override
   Widget build(BuildContext context) {
     print('build');
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        
         var key = _tabKeys[_controller.index];
         if (key.currentState?.canPop() == true) {
           key.currentState?.pop();
-          return false;
+        } else {
+          Navigator.of(context).pop();
         }
-        return true;
       },
       child: CupertinoApp(
         navigatorKey: _key,

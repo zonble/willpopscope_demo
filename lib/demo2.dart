@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Demo2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text('Deme 2')),
+        appBar: AppBar(title: Text('Demo 2')),
         body: Container(child: SnackBarPage()),
       );
 }
@@ -17,16 +17,22 @@ class _SnackBarPageState extends State<SnackBarPage> {
   var _snackBarPresenting = false;
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-      onWillPop: () async {
-        if (_snackBarPresenting) return true;
+  Widget build(BuildContext context) => PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        
+        if (_snackBarPresenting) {
+          Navigator.of(context).pop();
+          return;
+        }
+        
         _snackBarPresenting = true;
         var snackBar = SnackBar(content: Text('再按一次 Back 按鈕退出'));
         ScaffoldMessenger.of(context)
           ..showSnackBar(snackBar)
               .closed
               .then((_) => _snackBarPresenting = false);
-        return false;
       },
       child: Center(
           child: Padding(

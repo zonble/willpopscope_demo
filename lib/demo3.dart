@@ -11,13 +11,16 @@ class _Demo3State extends State<Demo3> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: WillPopScope(
-          onWillPop: () async {
+      body: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) return;
+            
             if (_key.currentState?.canPop() == true) {
               _key.currentState?.pop();
-              return false;
+            } else {
+              Navigator.of(context).pop();
             }
-            return true;
           },
           child: Column(
             children: <Widget>[
